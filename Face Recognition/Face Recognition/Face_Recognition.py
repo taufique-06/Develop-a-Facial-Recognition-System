@@ -1,19 +1,21 @@
 import face_recognition
 import cv2
 import numpy as np
-import os;
+
+# Function to rotate an image
+def rotate_image(image, angle):
+    image_center = tuple(np.array(image.shape[1::-1]) / 2)
+    rot_mat = cv2.getRotationMatrix2D(image_center, angle, 1.0)
+    result = cv2.warpAffine(image, rot_mat, image.shape[1::-1], flags=cv2.INTER_LINEAR)
+    return result
+
 # Open the camera
 video_capture = cv2.VideoCapture(0)
 
 # Load sample pictures and train them to recognize the pictures in real time
+# Assuming you have these images in the 'Images' folder
 test_image = face_recognition.load_image_file("Images/test.png")
 test_face_encoding = face_recognition.face_encodings(test_image)[0]
-
-#face_landmarks_list = face_recognition.batch_face_locations(messi_image);
-#print(face_landmarks_list)
-#print("")
-#face_landmarks_list2 = face_recognition.face_landmarks(messi_image1);
-#print(face_landmarks_list2)
 
 # Create arrays of known face encodings and their names
 known_face_encodings = [
@@ -33,47 +35,52 @@ while True:
     # Grab a single frame of video
     ret, frame = video_capture.read()
 
-    # Only process every other frame of video to save time
-    if process_this_frame:
-        # Resize frame of video to 1/4 size for faster face recognition processing
-        small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
-
-        # Convert the image from BGR color (which OpenCV uses) to RGB color (which face_recognition uses)
-        rgb_small_frame = cv2.cvtColor(small_frame, cv2.COLOR_BGR2RGB)
-        
-        # Find all the faces and face encodings in the current frame of video
-        face_locations = face_recognition.face_locations(rgb_small_frame)
-        face_encodings = face_recognition.face_encodings(rgb_small_frame, face_locations)
-
-        face_names = []
-        for face_encoding in face_encodings:
-            # See if the face is a match for the known face(s)
-            matches = face_recognition.compare_faces(known_face_encodings, face_encoding)
-            name = "Unknown"
+    # Rotate frame to handle different orientations
+    rotated_frames = [frame]
+    for angle in [90, 180, 270]:  # Rotate 90, 180, 270 degrees
+        rotated_frames.append(rotate_image(frame, angle))
+    
+    detected_faces = False
+    for rotated_frame in rotated_frames:
+        if process_this_frame:
+            # Resize frame of video for faster face recognition processing
+            small_frame = cv2.resize(rotated_frame, (0, 0), fx=0.25, fy=0.25)
+            rgb_small_frame = cv2.cvtColor(small_frame, cv2.COLOR_BGR2RGB)
             
-            # If a match was found in known_face_encodings, just use the first one.
-            # Or instead, use the known face with the smallest distance to the new face
-            face_distances = face_recognition.face_distance(known_face_encodings, face_encoding)
-            best_match_index = np.argmin(face_distances)
-            if matches[best_match_index]:
-                name = known_face_names[best_match_index]
-            cv2.imshow("im",face_encoding);
-            face_names.append(name)
-                
+            # Find all the faces and face encodings in the current frame of video
+            face_locations = face_recognition.face_locations(rgb_small_frame)
+            face_encodings = face_recognition.face_encodings(rgb_small_frame, face_locations)
+            
+            if face_encodings:  # If faces are detected, break the loop
+                detected_faces = True
+                break
+        
+        if detected_faces:
+            break
+
     process_this_frame = not process_this_frame
 
+    # Process face recognitions for the last detected frame
+    face_names = []
+    for face_encoding in face_encodings:
+        matches = face_recognition.compare_faces(known_face_encodings, face_encoding)
+        name = "Unknown"
+        face_distances = face_recognition.face_distance(known_face_encodings, face_encoding)
+        best_match_index = np.argmin(face_distances)
+        if matches[best_match_index]:
+            name = known_face_names[best_match_index]
+        face_names.append(name)
+
     # Display the results
+    # Make sure to adjust display code to match the orientation of detected faces
+    # This example assumes you're displaying the original frame. If you're using a rotated frame,
+    # you need to adjust the face location coordinates accordingly.
     for (top, right, bottom, left), name in zip(face_locations, face_names):
-        # Scale back up face locations since the frame we detected in was scaled to 1/4 size
         top *= 4
         right *= 4
         bottom *= 4
         left *= 4
-
-        # Draw a box around the face
         cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
-
-        # Draw a label with a name below the face
         cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0, 0, 255), cv2.FILLED)
         font = cv2.FONT_HERSHEY_DUPLEX
         cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)

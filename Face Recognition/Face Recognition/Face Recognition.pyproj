@@ -27,6 +27,8 @@
     <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\black.jpg" />
+    <Content Include="Images\brown.jpg" />
     <Content Include="Images\test.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
