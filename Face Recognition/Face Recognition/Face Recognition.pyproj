@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>29fb8c9d-65bd-4503-ad07-153644e8cad5</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Face_Recognition.py</StartupFile>
+    <StartupFile>main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,9 +21,13 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Face_Recognition.py" />
+    <Compile Include="main.py" />
+    <Compile Include="face_recognition\api.py" />
+    <Compile Include="face_recognition\face_detection_cli.py" />
+    <Compile Include="face_recognition\face_recognition_cli.py" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="face_recognition\" />
     <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
