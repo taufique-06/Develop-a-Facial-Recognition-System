@@ -12,17 +12,19 @@ def rotate_image(image, angle):
 video_capture = cv2.VideoCapture(0)
 
 # Load sample pictures and train them to recognize the pictures in real time
-test_image = api.load_image_file("Images/test.png")
-test_image1 = face_recognition.load_image_file("Images/brown.jpg")
-test_image2 = face_recognition.load_image_file("Images/black.jpg")
+test_image = api.load_image_file("TestData/F1/F1Main.jpg")
+test_image1 = api.load_image_file("TestData/F1/WithEyeMakeup.jpg")
+#test_image2 = face_recognition.load_image_file("Images/black.jpg")
 test_face_encoding = api.face_encodings(test_image)[0]
-face_land = face_recognition.face_landmarks(test_image);
-face_land1 = face_recognition.face_landmarks(test_image1);
-face_land2 = face_recognition.face_landmarks(test_image2);
+test_face_encoding1 = api.face_encodings(test_image1)[0]
+face_land = api.face_landmarks(test_image);
+face_land1 = api.face_landmarks(test_image1);
+#face_land2 = face_recognition.face_landmarks(test_image2);
 
-#print(face_land1);
-#print("black");
-#print(face_land2);
+print(face_land);
+print("black");
+print(face_land1);
+
 
 # Create arrays of known face encodings and their names
 known_face_encodings = [
@@ -31,6 +33,11 @@ known_face_encodings = [
 known_face_names = [
     "Mr X"
 ]
+
+m = api.compare_faces(known_face_encodings,test_face_encoding1)
+d = api.face_distance(known_face_encodings,test_face_encoding1)
+
+print(m,d)
 
 face_locations = []
 face_encodings = []
