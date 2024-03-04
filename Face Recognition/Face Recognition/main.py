@@ -1,7 +1,7 @@
 from face_recognition import api
 import cv2
 import numpy as np
-
+import time
 def rotate_image(image, angle):
     image_center = tuple(np.array(image.shape[1::-1]) / 2)
     rot_mat = cv2.getRotationMatrix2D(image_center, angle, 1.0)
@@ -43,6 +43,9 @@ face_locations = []
 face_encodings = []
 face_names = []
 process_this_frame = True
+
+frame_count = 0
+start_time = time.time()
 
 while True:
     ret, frame = video_capture.read()
@@ -92,6 +95,13 @@ while True:
         cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0, 0, 255), cv2.FILLED)
         font = cv2.FONT_HERSHEY_DUPLEX
         cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
+
+        frame_count += 1
+    current_time = time.time()
+    elapsed_time = current_time - start_time
+    if elapsed_time > 0:
+        fps = frame_count / elapsed_time
+        cv2.putText(frame, f"FPS: {fps:.2f}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
 
     # Display the resulting image
     cv2.imshow('Video', frame)

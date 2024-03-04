@@ -93,8 +93,10 @@
     <Content Include="TestData\F2\skinTone\black.jpg" />
     <Content Include="TestData\F2\skinTone\brown.jpg" />
     <Content Include="TestData\F2\skinTone\Olive.jpg" />
+    <Content Include="TestData\F2\WithEyeMakeup.jpg" />
     <Content Include="TestData\F3\age\aged.jpg" />
     <Content Include="TestData\F3\age\deage.jpg" />
+    <Content Include="TestData\F3\changeEye.jpg" />
     <Content Include="TestData\F3\Emotions\angry.jpg" />
     <Content Include="TestData\F3\Emotions\frightened.jpg" />
     <Content Include="TestData\F3\Emotions\happy.jpg" />
@@ -105,18 +107,20 @@
     <Content Include="TestData\F3\skinTone\black.jpg" />
     <Content Include="TestData\F3\skinTone\brown.jpg" />
     <Content Include="TestData\F3\skinTone\olive.jpg" />
+    <Content Include="TestData\F3\WithEyeMakeup.jpg" />
     <Content Include="TestData\M2\Age\deage.jpg" />
     <Content Include="TestData\M2\Age\ollder.jpg" />
     <Content Include="TestData\M2\change_eye.jpg" />
     <Content Include="TestData\M2\Emotions\Angry.jpg" />
     <Content Include="TestData\M2\Emotions\Frightened.jpg" />
     <Content Include="TestData\M2\Emotions\Happy.jpg" />
-    <Content Include="TestData\M2\Glasses\Reading_Glass.jpg" />
+    <Content Include="TestData\M2\Glasses\Reading_Glass 1.jpg" />
     <Content Include="TestData\M2\Glasses\Sunglass.jpg" />
     <Content Include="TestData\M2\M2Main.jpg" />
     <Content Include="TestData\M2\SkinTone\black.jpg" />
     <Content Include="TestData\M2\SkinTone\brown.jpg" />
     <Content Include="TestData\M2\SkinTone\Olive.jpg" />
+    <Content Include="TestData\M2\WithEyeMakeup.jpg" />
     <Content Include="TestData\M3\Age\aged.jpg" />
     <Content Include="TestData\M3\Age\deaged.jpg" />
     <Content Include="TestData\M3\change_eye.jpg" />
@@ -129,6 +133,7 @@
     <Content Include="TestData\M3\SkinTone\black.jpg" />
     <Content Include="TestData\M3\SkinTone\brown.jpg" />
     <Content Include="TestData\M3\SkinTone\Olive.jpg" />
+    <Content Include="TestData\M3\WithEyeMakeup.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
