@@ -1,0 +1,147 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>29fb8c9d-65bd-4503-ad07-153644e8cad5</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>main.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>Face Recognition</Name>
+    <RootNamespace>Face Recognition</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="main.py" />
+    <Compile Include="face_recognition\api.py" />
+    <Compile Include="face_recognition\face_detection_cli.py" />
+    <Compile Include="face_recognition\face_recognition_cli.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="face_recognition\" />
+    <Folder Include="Images\" />
+    <Folder Include="TestData\" />
+    <Folder Include="TestData\F1\" />
+    <Folder Include="TestData\F1\Age\" />
+    <Folder Include="TestData\F1\Emotions\" />
+    <Folder Include="TestData\F1\Glasses\" />
+    <Folder Include="TestData\F1\SkinTone\" />
+    <Folder Include="TestData\F2\" />
+    <Folder Include="TestData\F2\Age\" />
+    <Folder Include="TestData\F2\Emotion\" />
+    <Folder Include="TestData\F2\Glass\" />
+    <Folder Include="TestData\F2\skinTone\" />
+    <Folder Include="TestData\F3\" />
+    <Folder Include="TestData\F3\age\" />
+    <Folder Include="TestData\F3\Emotions\" />
+    <Folder Include="TestData\F3\glass\" />
+    <Folder Include="TestData\F3\skinTone\" />
+    <Folder Include="TestData\M2\" />
+    <Folder Include="TestData\M2\Age\" />
+    <Folder Include="TestData\M2\Emotions\" />
+    <Folder Include="TestData\M2\Glasses\" />
+    <Folder Include="TestData\M2\SkinTone\" />
+    <Folder Include="TestData\M3\" />
+    <Folder Include="TestData\M3\Age\" />
+    <Folder Include="TestData\M3\Emotions\" />
+    <Folder Include="TestData\M3\Glasses\" />
+    <Folder Include="TestData\M3\SkinTone\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\e.png" />
+    <Content Include="Images\e300.png" />
+    <Content Include="Images\e400.png" />
+    <Content Include="Images\e600.png" />
+    <Content Include="Images\e900.png" />
+    <Content Include="Images\e1200.png" />
+    <Content Include="Images\e1400.png" />
+    <Content Include="Images\e1700.png" />
+    <Content Include="Images\e2000.png" />
+    <Content Include="Images\test.png" />
+    <Content Include="TestData\F1\Age\Infant.jpg" />
+    <Content Include="TestData\F1\Age\ollder.jpg" />
+    <Content Include="TestData\F1\Age\young_adult.jpg" />
+    <Content Include="TestData\F1\change_eye.jpg" />
+    <Content Include="TestData\F1\Emotions\Angry.jpg" />
+    <Content Include="TestData\F1\Emotions\Frightened.jpg" />
+    <Content Include="TestData\F1\Emotions\Happy.jpg" />
+    <Content Include="TestData\F1\F1Main.jpg" />
+    <Content Include="TestData\F1\Glasses\Reading_Glass.jpg" />
+    <Content Include="TestData\F1\Glasses\Sunglass.jpg" />
+    <Content Include="TestData\F1\SkinTone\black.jpg" />
+    <Content Include="TestData\F1\SkinTone\brown.jpg" />
+    <Content Include="TestData\F1\SkinTone\Olive.jpg" />
+    <Content Include="TestData\F1\WithEyeMakeup.jpg" />
+    <Content Include="TestData\F2\Age\aged.jpg" />
+    <Content Include="TestData\F2\Age\deage.jpg" />
+    <Content Include="TestData\F2\change_eye.jpg" />
+    <Content Include="TestData\F2\Emotion\angry.jpg" />
+    <Content Include="TestData\F2\Emotion\Frightened.jpg" />
+    <Content Include="TestData\F2\Emotion\happy.jpg" />
+    <Content Include="TestData\F2\F2Main.jpg" />
+    <Content Include="TestData\F2\Glass\reading.jpg" />
+    <Content Include="TestData\F2\Glass\sunglass.jpg" />
+    <Content Include="TestData\F2\skinTone\black.jpg" />
+    <Content Include="TestData\F2\skinTone\brown.jpg" />
+    <Content Include="TestData\F2\skinTone\Olive.jpg" />
+    <Content Include="TestData\F2\WithEyeMakeup.jpg" />
+    <Content Include="TestData\F3\age\aged.jpg" />
+    <Content Include="TestData\F3\age\deage.jpg" />
+    <Content Include="TestData\F3\changeEye.jpg" />
+    <Content Include="TestData\F3\Emotions\angry.jpg" />
+    <Content Include="TestData\F3\Emotions\frightened.jpg" />
+    <Content Include="TestData\F3\Emotions\happy.jpg" />
+    <Content Include="TestData\F3\F3Main.jpg" />
+    <Content Include="TestData\F3\glass\changeeye.jpg" />
+    <Content Include="TestData\F3\glass\reading.jpg" />
+    <Content Include="TestData\F3\glass\sunglass.jpg" />
+    <Content Include="TestData\F3\skinTone\black.jpg" />
+    <Content Include="TestData\F3\skinTone\brown.jpg" />
+    <Content Include="TestData\F3\skinTone\olive.jpg" />
+    <Content Include="TestData\F3\WithEyeMakeup.jpg" />
+    <Content Include="TestData\M2\Age\deage.jpg" />
+    <Content Include="TestData\M2\Age\ollder.jpg" />
+    <Content Include="TestData\M2\change_eye.jpg" />
+    <Content Include="TestData\M2\Emotions\Angry.jpg" />
+    <Content Include="TestData\M2\Emotions\Frightened.jpg" />
+    <Content Include="TestData\M2\Emotions\Happy.jpg" />
+    <Content Include="TestData\M2\Glasses\Reading_Glass 1.jpg" />
+    <Content Include="TestData\M2\Glasses\Sunglass.jpg" />
+    <Content Include="TestData\M2\M2Main.jpg" />
+    <Content Include="TestData\M2\SkinTone\black.jpg" />
+    <Content Include="TestData\M2\SkinTone\brown.jpg" />
+    <Content Include="TestData\M2\SkinTone\Olive.jpg" />
+    <Content Include="TestData\M2\WithEyeMakeup.jpg" />
+    <Content Include="TestData\M3\Age\aged.jpg" />
+    <Content Include="TestData\M3\Age\deaged.jpg" />
+    <Content Include="TestData\M3\change_eye.jpg" />
+    <Content Include="TestData\M3\Emotions\Angry.jpg" />
+    <Content Include="TestData\M3\Emotions\Frightened.jpg" />
+    <Content Include="TestData\M3\Emotions\Happy.jpg" />
+    <Content Include="TestData\M3\Glasses\Reading_Glass.jpg" />
+    <Content Include="TestData\M3\Glasses\Sunglass.jpg" />
+    <Content Include="TestData\M3\M3Main.jpg" />
+    <Content Include="TestData\M3\SkinTone\black.jpg" />
+    <Content Include="TestData\M3\SkinTone\brown.jpg" />
+    <Content Include="TestData\M3\SkinTone\Olive.jpg" />
+    <Content Include="TestData\M3\WithEyeMakeup.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+  <!-- Uncomment the CoreCompile target to enable the Build command in
+       Visual Studio and specify your pre- and post-build commands in
+       the BeforeBuild and AfterBuild targets below. -->
+  <!--<Target Name="CoreCompile" />-->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+</Project>
