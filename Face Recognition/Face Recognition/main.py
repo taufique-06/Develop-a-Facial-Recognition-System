@@ -2,28 +2,29 @@ from face_recognition import api
 import cv2
 import numpy as np
 import time
+import requests
+
 def rotate_image(image, angle):
     image_center = tuple(np.array(image.shape[1::-1]) / 2)
     rot_mat = cv2.getRotationMatrix2D(image_center, angle, 1.0)
     result = cv2.warpAffine(image, rot_mat, image.shape[1::-1], flags=cv2.INTER_LINEAR)
     return result
 
+def send_simple_message():
+	return requests.post(
+		"https://api.mailgun.net/v3/sandbox19386ddb826249119c8b16f4048a03d9.mailgun.org/messages",
+		auth=("api", "81c883dbb40169ff82298725e35b9b03-2c441066-a1f95711"),
+		data={"from": "ta5996u@gre.ac.uk",
+			"to": ["ta5996u@gmail.com"],
+			"subject": "Face Recognised!",
+			"text": "The system recognises the person. Confirm to open the door......!"})
+
 # Open the camera
 video_capture = cv2.VideoCapture(0)
 
 # Load sample pictures and train them to recognize the pictures in real time
 test_image = api.load_image_file("TestData/F1/F1Main.jpg")
-test_image1 = api.load_image_file("TestData/F1/WithEyeMakeup.jpg")
-#test_image2 = face_recognition.load_image_file("Images/black.jpg")
 test_face_encoding = api.face_encodings(test_image)[0]
-test_face_encoding1 = api.face_encodings(test_image1)[0]
-face_land = api.face_landmarks(test_image);
-face_land1 = api.face_landmarks(test_image1);
-#face_land2 = face_recognition.face_landmarks(test_image2);
-
-print(face_land);
-print("black");
-print(face_land1);
 
 
 # Create arrays of known face encodings and their names
@@ -31,13 +32,8 @@ known_face_encodings = [
     test_face_encoding,
 ]
 known_face_names = [
-    "Mr X"
+    "F1"
 ]
-
-m = api.compare_faces(known_face_encodings,test_face_encoding1)
-d = api.face_distance(known_face_encodings,test_face_encoding1)
-
-print(m,d)
 
 face_locations = []
 face_encodings = []
@@ -84,6 +80,8 @@ while True:
         best_match_index = np.argmin(face_distances)
         if matches[best_match_index]:
             name = known_face_names[best_match_index]
+            request = send_simple_message();
+            print(request.status_code);
         face_names.append(name)
 
     for (top, right, bottom, left), name in zip(face_locations, face_names):
