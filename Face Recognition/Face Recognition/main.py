@@ -97,11 +97,11 @@ while True:
         cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
 
         frame_count += 1
-    current_time = time.time()
-    elapsed_time = current_time - start_time
-    if elapsed_time > 0:
-        fps = frame_count / elapsed_time
-        cv2.putText(frame, f"FPS: {fps:.2f}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+        current_time = time.time()
+        elapsed_time = current_time - start_time
+        if elapsed_time > 0:
+            fps = frame_count / elapsed_time
+            cv2.putText(frame, f"FPS: {fps:.2f}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
 
     # Display the resulting image
     cv2.imshow('Video', frame)
