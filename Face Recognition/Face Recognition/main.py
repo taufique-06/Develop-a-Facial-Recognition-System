@@ -10,29 +10,63 @@ def rotate_image(image, angle):
     result = cv2.warpAffine(image, rot_mat, image.shape[1::-1], flags=cv2.INTER_LINEAR)
     return result
 
-def send_simple_message():
-	return requests.post(
-		"https://api.mailgun.net/v3/sandbox19386ddb826249119c8b16f4048a03d9.mailgun.org/messages",
-		auth=("api", "81c883dbb40169ff82298725e35b9b03-2c441066-a1f95711"),
-		data={"from": "ta5996u@gre.ac.uk",
-			"to": ["ta5996u@gmail.com"],
-			"subject": "Face Recognised!",
-			"text": "The system recognises the person. Confirm to open the door......!"})
+def send_simple_message(name):
+    message_text = f"The system has recognized a person. Here are the details: Name: {name}. Please confirm to open the door."
+
+    return requests.post(
+        "https://api.mailgun.net/v3/sandbox95168474e47740afb9dccad515e0a902.mailgun.org/messages",
+        auth=("api", "9244f85ff3920bdc33a94e8a99e028e6-2c441066-cf0d5202"),
+        data={
+            "from": "ta5996u@gmail.com",
+            "to": ["taufiqueazad999@gmail.com"],
+            "subject": "Face Recognized!",
+            "text": message_text
+        }
+    )
 
 # Open the camera
 video_capture = cv2.VideoCapture(0)
 
 # Load sample pictures and train them to recognize the pictures in real time
-test_image = api.load_image_file("TestData/F1/F1Main.jpg")
-test_face_encoding = api.face_encodings(test_image)[0]
+M1_image = api.load_image_file("TestData/M1/M1Main.png")
+M1_face_encoding = api.face_encodings(M1_image)[0]
 
+#Train M2
+M2_image = api.load_image_file("TestData/M2/M2Main.jpg")
+M2_face_encoding = api.face_encodings(M2_image)[0]
+
+#Train M3
+M3_image = api.load_image_file("TestData/M3/M3Main.jpg")
+M3_face_encoding = api.face_encodings(M3_image)[0]
+
+#Train F1
+F1_image = api.load_image_file("TestData/F1/F1Main.jpg")
+F1_face_encoding = api.face_encodings(F1_image)[0]
+
+#Train F2
+F2_image = api.load_image_file("TestData/F2/F2Main.jpg")
+F2_face_encoding = api.face_encodings(F2_image)[0]
+
+#Train F3
+F3_image = api.load_image_file("TestData/F3/F3Main.jpg")
+F3_face_encoding = api.face_encodings(F3_image)[0]
 
 # Create arrays of known face encodings and their names
 known_face_encodings = [
-    test_face_encoding,
+    M1_face_encoding,
+    M2_face_encoding,
+    M3_face_encoding,
+    F1_face_encoding,
+    F2_face_encoding,
+    F3_face_encoding
 ]
 known_face_names = [
-    "F1"
+    "M1",
+    "M2",
+    "M3",
+    "F1",
+    "F2",
+    "F3",
 ]
 
 face_locations = []
@@ -80,7 +114,7 @@ while True:
         best_match_index = np.argmin(face_distances)
         if matches[best_match_index]:
             name = known_face_names[best_match_index]
-            request = send_simple_message();
+            request = send_simple_message(name);
             print(request.status_code);
         face_names.append(name)
 
