@@ -14,8 +14,8 @@ def send_simple_message(name):
     message_text = f"The system has recognized a person. Here are the details: Name: {name}. Please confirm to open the door."
 
     return requests.post(
-        "https://api.mailgun.net/v3/sandbox95168474e47740afb9dccad515e0a902.mailgun.org/messages",
-        auth=("api", "9244f85ff3920bdc33a94e8a99e028e6-2c441066-cf0d5202"),
+        "https://api.mailgun.net/v3/your_domain_name/messages",
+        auth=("api", "your_api_key"),
         data={
             "from": "ta5996u@gmail.com",
             "to": ["taufiqueazad999@gmail.com"],
