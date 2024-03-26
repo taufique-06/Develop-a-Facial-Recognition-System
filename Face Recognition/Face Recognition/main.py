@@ -107,7 +107,7 @@ while True:
     # Process face recognitions for the last detected frame
     face_names = []
     for face_encoding in face_encodings:
-        matches = api.compare_faces(known_face_encodings, face_encoding)
+        matches = api.compare_faces(known_face_encodings, face_encoding,0.66)
         name = "Unknown"
         face_distances = api.face_distance(known_face_encodings, face_encoding);
         # print(face_distances);
